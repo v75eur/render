@@ -1,9 +1,10 @@
 from flask import Flask, jsonify, render_template_string
-import threading, websocket, json, time
+import threading, websocket, json, time, os
 
 app = Flask(__name__)
 last_price = {"time": 0, "value": 0}
-TOKEN = "YDL6LNP2cTH4LO2"
+# On récupère le token depuis l'environnement de Render
+TOKEN = os.getenv("DERIV_TOKEN", "TOKEN_PAS_TROUVE")
 
 INDEX_HTML = """
 <!DOCTYPE html>
